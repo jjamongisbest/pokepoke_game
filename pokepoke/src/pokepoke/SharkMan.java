@@ -26,17 +26,21 @@ public class SharkMan extends Monster implements HeroAttackable {
 
 			System.out.printf("%s의 몸통박치기하고깨물기..! %s에게 %d의 데미지를 입혔다!\n", this.getName(), hero.getName(),
 					this.attackDamage);
-			System.out.printf("[PLAYER %d의 남은 HP] %d / %d \n", hero.getName(), hero.getHp(), hero.MAX_HP);
+			System.out.printf("[PLAYER %s의 남은 HP] %d / %d \n", hero.getName(), hero.getHp(), hero.MAX_HP);
 
 			bloodAbsorption();
 
 		}
 	}
 
-
-	private void bloodAbsorption() {
-		super.setHp(super.getHp() + this.attackDamage / 2);
-		System.out.printf("[손톱할퀴기!!!] %s의 HP가 %d 회복되었습니다.\n", this.getName(), super.getHp() + this.attackDamage / 2);
+	@Override
+	public void bloodAbsorption() {
+		super.setHp(super.getHp() + this.attackDamage / 50);
+		
+		if(super.getHp() >= super.MAX_HP)
+			super.setHp(super.MAX_HP);
+		
+		System.out.printf("[손톱할퀴기!!!] %s의 HP가 %d 회복되었습니다.\n", this.getName(), super.getHp() + this.attackDamage / 50);
 	}
 
 }

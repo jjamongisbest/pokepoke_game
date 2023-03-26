@@ -53,7 +53,7 @@ public class GameController {
 
 		this.exp = 0;
 
-		this.monsters = new String[] { "SharkMan", "FireDragon", "IceTurtle", "PoisionSlime", "Torent" };
+		this.monsters = new String[] { "SharkMan", "PoisionSlime", "Torent", "IceTurtle", "FireDragon" };
 	}
 
 	public void run() {
@@ -78,6 +78,7 @@ public class GameController {
 		int dice = ran.nextInt(10) + 1;
 
 		if (dice == 1) {
+			System.out.println("[경고!] 비릿한 물비린내가 난다...몬스터를 만난 것 같다");
 			choice();
 			int sel = this.sc.nextInt();
 
@@ -90,49 +91,53 @@ public class GameController {
 
 		} else if (dice == 3) {
 
+			System.out.println("[경고!] 끈적한 무언가를 밟았다! 몬스러틑 만난 것 같다");
 			choice();
 			int sel = this.sc.nextInt();
 
 			if (sel == 1) {
 				fight(1);
 			} else {
-				System.out.print("[최선의선택이다!!!] 도망가다 발을 삐끗해서 HP가 5 하락했습니다.");
+				System.out.println("[최선의선택이다!!!] 도망가다 발을 삐끗해서 HP가 5 하락했습니다.");
 				this.hero.setHp(this.hero.getHp() - 5);
 			}
 
 		} else if (dice == 6) {
 
+			System.out.println("[경고!] 나무줄기가 발목을 휘감고있다.. 몬스터를 만난 것 같다");
 			choice();
 			int sel = this.sc.nextInt();
 
 			if (sel == 1) {
 				fight(2);
 			} else {
-				System.out.print("[최선의선택이다!!!] 도망가다 자존심이 상해서 HP가 10 하락했습니다.");
+				System.out.println("[최선의선택이다!!!] 도망가다 자존심이 상해서 HP가 10 하락했습니다.");
 				this.hero.setHp(this.hero.getHp() - 10);
 			}
 
 		} else if (dice == 7) {
 
+			System.out.println("[경고!] 뼈에 사무치는 한기가 느껴진다..! 몬스터를 만난 것 같다. ");
 			choice();
 			int sel = this.sc.nextInt();
 
 			if (sel == 1) {
 				fight(3);
 			} else {
-				System.out.print("[최선의선택이다!!!] 도망가다 물에 빠져 HP가 15 하락했습니다.");
+				System.out.println("[최선의선택이다!!!] 도망가다 물에 빠져 HP가 15 하락했습니다.");
 				this.hero.setHp(this.hero.getHp() - 15);
 			}
 
 		} else if (dice == 10) {
 
+			System.out.println("[경고!] 전설의 용이다!!!!!!!!!!");
 			choice();
 			int sel = this.sc.nextInt();
 
 			if (sel == 1) {
 				fight(4);
 			} else {
-				System.out.print("[최선의선택이다!!!] 도망가다 뒤에서 기습을 당해 HP가 20 하락했습니다.");
+				System.out.println("[최선의선택이다!!!] 도망가다 뒤에서 기습을 당해 HP가 20 하락했습니다.");
 				this.hero.setHp(this.hero.getHp() - 20);
 			}
 
@@ -165,13 +170,16 @@ public class GameController {
 				this.mon.attack(this.hero);
 
 				if (this.hero.getHp() <= 0) {
-					System.out.printf("%d님이 죽었습니다. GAME LOSE\n", this.hero.getName());
+					System.out.printf("%s님이 죽었습니다. GAME LOSE\n", this.hero.getName());
+					System.out.println("[칠칠맞은 당신을 위해 생명의 버프가 내려졌습니다.]");
 					this.hero.setHp(20);
+					break;
 				}
 
 				if (this.mon.getHp() <= 0) {
-					System.out.printf("%d를 잡았다!! 경험치를 었었다.\n", this.mon.getName());
+					System.out.printf("%s를 잡았다!! 경험치를 얻었다.\n", this.mon.getName());
 					this.exp++;
+					break;
 				}
 
 			}

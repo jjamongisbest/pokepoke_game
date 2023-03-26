@@ -35,6 +35,8 @@ abstract public class Monster {
 	}
 	
 	public abstract void attack(Hero hero);
+	
+	public abstract void bloodAbsorption();
 
 
 }

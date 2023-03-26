@@ -7,6 +7,11 @@ public class IceTurtle extends Monster implements HeroAttackable {
 	public IceTurtle() {
 		super(450, 450, 24, "아이스꺼북");
 	}
+	
+	@Override
+	public String toString() {
+		return "[아이스꺼북 출현!] 거대한 거북이가 땅속에서 솟구쳤다..!";
+	}
 
 	@Override
 	public void attack(Hero hero) {
@@ -21,15 +26,21 @@ public class IceTurtle extends Monster implements HeroAttackable {
 
 			System.out.printf("%s의 꼬리휘둘러치기...! %s에게 %d의 데미지를 입혔다!!!\n", super.getName(), hero.getName(),
 					this.attackDamage);
-			System.out.printf("[PLAYER %d의 남은 HP] %d / %d \n", hero.getName(), hero.getHp(), hero.MAX_HP);
+			System.out.printf("[PLAYER %s의 남은 HP] %d / %d \n", hero.getName(), hero.getHp(), hero.MAX_HP);
 
 			bloodAbsorption();
 		}
 	}
 
-	private void bloodAbsorption() {
-		super.setHp(super.getHp() + this.attackDamage / 2);
-		System.out.printf("[얼음송곳!!] %s의 HP가 %d 회복되었습니다.\n", super.getName(), super.getHp() + this.attackDamage / 2);
+	@Override
+	public void bloodAbsorption() {
+		super.setHp(super.getHp() + this.attackDamage / 20);
+		
+		if(super.getHp() >= super.MAX_HP)
+			super.setHp(super.MAX_HP);
+		
+		System.out.printf("[얼음송곳!!] %s의 HP가 %d 회복되었습니다.\n", super.getName(), super.getHp() + this.attackDamage / 20);	
 	}
+	
 
 }

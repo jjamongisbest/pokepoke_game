@@ -7,10 +7,9 @@ public class Hero extends Unit implements MonsterAttackable {
 	private int attackDamage;
 	private int buffedCount;
 	private int debuffedCount;
-	
 
 	public Hero(String name) {
-		super(200, 200, 10, name);
+		super(300, 300, 10, name);
 		this.buffedCount = 3;
 		this.debuffedCount = 1;
 	}
@@ -39,7 +38,7 @@ public class Hero extends Unit implements MonsterAttackable {
 				mon.setHp(0);
 
 			System.out.printf("☠️ 히어로의 공격! %d 의 데미지를 입혔습니다! ☠️\n", this.attackDamage);
-			System.out.printf("[현재 %d의 남은 HP] %d / %d \n", mon.getName(), mon.getHp(), mon.MAX_HP);
+			System.out.printf("[현재 %s의 남은 HP] %d / %d \n", mon.getName(), mon.getHp(), mon.MAX_HP);
 
 		}
 
