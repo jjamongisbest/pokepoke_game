@@ -72,13 +72,20 @@ public class GameController {
 
 	private void levelUp() {
 
+		System.out.println("[✨LEVEL UP✨] 전장의 축복이 내려집니다! ");
+
+		hero.max_hp += 100;
+		hero.setHp(hero.max_hp);
+		hero.setAttackPower(hero.getAttackPower() + 10);
+
 	}
 
 	private void monsterAppearance() {
-		int dice = ran.nextInt(10) + 1;
+//		int dice = ran.nextInt(10) + 1;
+		int dice = 1;
 
 		if (dice == 1) {
-			System.out.println("[경고!] 비릿한 물비린내가 난다...몬스터를 만난 것 같다");
+			System.err.println("[경고!] 비릿한 물비린내가 난다...몬스터를 만난 것 같다");
 			choice();
 			int sel = this.sc.nextInt();
 
@@ -91,7 +98,7 @@ public class GameController {
 
 		} else if (dice == 3) {
 
-			System.out.println("[경고!] 끈적한 무언가를 밟았다! 몬스러틑 만난 것 같다");
+			System.err.println("[경고!] 끈적한 무언가를 밟았다! 몬스러틑 만난 것 같다");
 			choice();
 			int sel = this.sc.nextInt();
 
@@ -104,7 +111,7 @@ public class GameController {
 
 		} else if (dice == 6) {
 
-			System.out.println("[경고!] 나무줄기가 발목을 휘감고있다.. 몬스터를 만난 것 같다");
+			System.err.println("[경고!] 나무줄기가 발목을 휘감고있다.. 몬스터를 만난 것 같다");
 			choice();
 			int sel = this.sc.nextInt();
 
@@ -117,7 +124,7 @@ public class GameController {
 
 		} else if (dice == 7) {
 
-			System.out.println("[경고!] 뼈에 사무치는 한기가 느껴진다..! 몬스터를 만난 것 같다. ");
+			System.err.println("[경고!] 뼈에 사무치는 한기가 느껴진다..! 몬스터를 만난 것 같다. ");
 			choice();
 			int sel = this.sc.nextInt();
 
@@ -130,7 +137,7 @@ public class GameController {
 
 		} else if (dice == 10) {
 
-			System.out.println("[경고!] 전설의 용이다!!!!!!!!!!");
+			System.err.println("[경고!] 전설의 용이다!!!!!!!!!!");
 			choice();
 			int sel = this.sc.nextInt();
 
@@ -166,7 +173,18 @@ public class GameController {
 			System.out.println("[BATTLE ON]");
 
 			while (true) {
+
+				if (this.mon == null)
+					System.out.println("this.mon is not defined");
+
 				this.hero.attack(this.mon);
+
+				if (this.mon.getHp() <= 0) {
+					System.out.printf("[%s를 잡았다!!] 경험치를 얻었다.\n", this.mon.getName());
+					this.exp++;
+					break;
+				}
+
 				this.mon.attack(this.hero);
 
 				if (this.hero.getHp() <= 0) {
@@ -176,24 +194,17 @@ public class GameController {
 					break;
 				}
 
-				if (this.mon.getHp() <= 0) {
-					System.out.printf("%s를 잡았다!! 경험치를 얻었다.\n", this.mon.getName());
-					this.exp++;
-					break;
-				}
-
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	private void movePlayer() {
 		System.out.println(" 	     ▲(w)      ");
 		System.out.println("	◀(a) ▼(s) ▶(d)");
-		System.out.printf(" [현재 체력] %d / %d  [AP] %d \n", this.hero.getHp(), this.hero.MAX_HP,
+		System.out.printf(" [현재 체력] %d / %d  [AP] %d \n", this.hero.getHp(), this.hero.max_hp,
 				this.hero.getAttackPower());
 		System.out.print("     [MOVE] : ");
 

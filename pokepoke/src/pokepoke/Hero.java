@@ -38,7 +38,7 @@ public class Hero extends Unit implements MonsterAttackable {
 				mon.setHp(0);
 
 			System.out.printf("☠️ 히어로의 공격! %d 의 데미지를 입혔습니다! ☠️\n", this.attackDamage);
-			System.out.printf("[현재 %s의 남은 HP] %d / %d \n", mon.getName(), mon.getHp(), mon.MAX_HP);
+			System.out.printf("[현재 %s의 남은 HP] %d / %d \n", mon.getName(), mon.getHp(), mon.max_hp);
 
 		}
 
@@ -60,6 +60,10 @@ public class Hero extends Unit implements MonsterAttackable {
 		if (dice == 6) {
 			System.out.println("[천상의 축복!] HP가 100 회복됩니다.");
 			this.setHp(this.getHp() + 100);
+
+			if (this.getHp() >= this.max_hp)
+				this.setHp(this.max_hp);
+
 			this.buffedCount--;
 		}
 	}

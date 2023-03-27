@@ -27,7 +27,7 @@ public class PoisionSlime extends Monster implements HeroAttackable {
 
 			System.out.printf("[ %s의 지독한독가스살포! %s에게 %d의 데미지를 입혔다! ]\n", super.getName(), hero.getName(),
 					this.attackDamage);
-			System.out.printf("[PLAYER %s의 남은 HP] %d / %d \n", hero.getName(), hero.getHp(), hero.MAX_HP);
+			System.out.printf("[PLAYER %s의 남은 HP] %d / %d \n", hero.getName(), hero.getHp(), hero.max_hp);
 
 			bloodAbsorption();
 
@@ -39,8 +39,8 @@ public class PoisionSlime extends Monster implements HeroAttackable {
 	public void bloodAbsorption() {
 		super.setHp(super.getHp() + this.attackDamage / 20);
 
-		if (super.getHp() >= super.MAX_HP)
-			super.setHp(super.MAX_HP);
+		if (super.getHp() >= super.max_hp)
+			super.setHp(super.max_hp);
 
 		System.out.printf("[흡혈빨판!!] %s의 HP가 %d 회복되었습니다.\n", this.getName(), super.getHp() + this.attackDamage / 20);
 	}

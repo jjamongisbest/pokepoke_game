@@ -7,14 +7,14 @@ abstract public class Monster {
 	private int hp;
 	private int attackPower;
 	private String name;
-	public final int MAX_HP;
+	public int max_hp;
 	public Random ran;
 	
 	public Monster(int hp, int max, int ap, String name) {
 		this.hp = hp;
 		this.attackPower = ap;
 		this.name = name;
-		this.MAX_HP = max;
+		this.max_hp = max;
 		this.ran = new Random();
 	}
 	
